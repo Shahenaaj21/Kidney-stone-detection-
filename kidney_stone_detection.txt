@@ -1,0 +1,52 @@
+clc 
+clear all;
+close all; 
+warning off
+[filename,pathname]=uigetfile['*.*','pick a MATLAB code file'] 
+filename=strcat(pathname,filename); 
+a=imread(filename); 
+imshow(a); 
+b=rgb2gray(a); 
+figure; 
+imshow(b); 
+impixelinfo; 
+c=b>20; 
+figure; 
+imshow(c) 
+d=imfill(c,'holes'); 
+figur; 
+imshow(d); 
+e=bwareaopen(d,1000); 
+figure; 
+imshow(e); 
+prreprocessedimage=unit8(double(a).*repmate[113]); 
+figure; 
+imshow(preprocessedimage); 
+uo=rgb2gray(preprocessedimage); 
+figure; 
+vii
+imshow(uo); 
+mo=medfilt2(uo,[55]); 
+figure; 
+imshow(mo); 
+po=mo>250; 
+figure; 
+imshow(po); 
+[r c m]=size(po); 
+x1=r/2; 
+y1=c/3; 
+row=[x1 x1+200 x1+200 x1]; 
+col=[y1 y1 y1+40 y1+40]; 
+BW=roipoly(po,row,col); 
+figure; 
+imshow(BW); 
+k=po.*double(BW); 
+figure; 
+imshow(k); 
+M=bwareaopen(k,4); 
+[ya number]=bwlabel(M); 
+if(number>=1) 
+disp('Stone is detected'); 
+else
+disp('No stone is detected'); 
+end
